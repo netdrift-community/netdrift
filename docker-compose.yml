@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - 27017:27017
+
+  job_cache:
+    image: redis:6.2-alpine
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+
+  #worker:
+  #  build:
+  #    context: .
+  #    dockerfile: dockerfiles/Dockerfile.worker
+  #  restart: unless-stopped
